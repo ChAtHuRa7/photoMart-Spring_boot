@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="discovery-server" />
+        <module name="booking-service" />
+        <module name="api-gateway" />
+        <module name="calendar-service" />
+        <module name="authorization-service" />
+        <module name="user-service" />
+        <module name="photographer-service" />
+        <module name="package-service" />
+        <module name="portfolio-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api-gateway" target="17" />
+      <module name="authorization-service" target="17" />
+      <module name="booking-service" target="19" />
+      <module name="calendar-service" target="17" />
+      <module name="discovery-server" target="17" />
+      <module name="package-service" target="17" />
+      <module name="photographer-service" target="17" />
+      <module name="portfolio-service" target="17" />
+      <module name="user-service" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway" options="-parameters" />
+      <module name="authorization-service" options="-parameters" />
+      <module name="booking-service" options="-parameters" />
+      <module name="calendar-service" options="-parameters" />
+      <module name="discovery-server" options="-parameters" />
+      <module name="package-service" options="-parameters" />
+      <module name="photographer-service" options="-parameters" />
+      <module name="portfolio-service" options="-parameters" />
+      <module name="user-service" options="-parameters" />
+    </option>
+  </component>
+</project>
