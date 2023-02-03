@@ -42,7 +42,13 @@ public class PortfolioServiceImpl implements PortfolioService {
         }
 
         return portfolios.stream()
-                .map(portfolio -> modelMapper.map(portfolio,PortfolioResponseDto.class)).toList();
+                .map( portfolio -> new PortfolioResponseDto(
+                        portfolio.getId(),
+                        portfolio.getPhotographerId(),
+                        portfolio.getLocation(),
+                        portfolio.getAlbumName(),
+                        portfolio.getSourceUrls().stream().map(SourceUrl::getUrl).toList()
+                )).toList();
     }
 
     @Override

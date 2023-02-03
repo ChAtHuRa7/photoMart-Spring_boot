@@ -21,10 +21,10 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long eId;
     private String locating;
-    private Date date;
+    private Time time;
 
-    public Event(String locating, Date date) {
+    public Event(String locating, Time time) {
         this.locating = locating;
-        this.date = date;
+        this.time = time;
     }
 }

@@ -11,6 +11,8 @@ import com.photoMart.photographerservice.repository.PhotographerRepo;
 import com.photoMart.photographerservice.service.PhotographerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +37,7 @@ public class PhotographerServiceIMPL implements PhotographerService {
                   photographerSaveRequestDTO.getPhotographerName(),
                   photographerSaveRequestDTO.getUserEmail(),
                   photographerSaveRequestDTO.getMobileNumber(),
+                  photographerSaveRequestDTO.getAddress(),
                   photographerSaveRequestDTO.getStudioName(),
                   "",
                   "",
@@ -63,6 +66,20 @@ public class PhotographerServiceIMPL implements PhotographerService {
     }
 
     @Override
+    public List<PhotographerResponseDto> getPhotographerLimited(int count) throws NotFoundException {
+        Pageable num = PageRequest.ofSize(count);
+        List<Photographer> photographers = photographerRepo.getPhotographersInLimite(num);
+        if(!photographers.isEmpty()){
+            return photographers.stream().map(photographer ->
+                    modelMapper.map(photographer,PhotographerResponseDto.class)
+            ).toList();
+        }
+        else {
+            throw new NotFoundException("Not found");
+        }
+    }
+
+    @Override
     public List<PhotographerResponseDto> getPhotographers() throws NotFoundException{
         List<Photographer> photographers = photographerRepo.findByIsEnableTrue();
         if(!photographers.isEmpty()){
@@ -87,13 +104,15 @@ public class PhotographerServiceIMPL implements PhotographerService {
                photographerUpdateRequestDto.getWhatsAppNumber(),
                photographerUpdateRequestDto.getContactEmail(),
                photographerUpdateRequestDto.getFaceBookProfile(),
+               photographerUpdateRequestDto.getAddress(),
                photographerId
         );
 
        return getPhotographer(photographerId);
     }
 
-    private PhotographerResponseDto getPhotographerByEmail(String photographerEmail) throws NotFoundException{
+    @Override
+    public PhotographerResponseDto getPhotographerByEmail(String photographerEmail) throws NotFoundException{
         Optional<Photographer> photographer = photographerRepo.findByPhotographerEmailEqualsIgnoreCase(photographerEmail);
         if(photographer.isPresent() && photographer.get().isEnable()){
             return modelMapper.map(photographer.get(),PhotographerResponseDto.class);

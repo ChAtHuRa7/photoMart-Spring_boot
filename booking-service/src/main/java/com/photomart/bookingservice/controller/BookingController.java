@@ -49,6 +49,18 @@ public class BookingController {
                     .body(e);
         }
     }
+
+    @GetMapping(path = "/" , params = "cId")
+    public ResponseEntity<?> getBookingByCalendarId(@RequestParam (value = "cId") long calendarId){
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(bookingServices.getBookingByCalendarId(calendarId));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(e);
+        }
+    }
+
     @PutMapping(path = "/" , params = {"id","cId"})
     public ResponseEntity<?> putCalenderId(@RequestParam("id") long bookingId,@RequestParam("cId") long calendarId){
         try {

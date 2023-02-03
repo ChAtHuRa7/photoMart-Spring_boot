@@ -2,6 +2,7 @@ package com.photoMart.photographerservice.repository;
 
 
 import com.photoMart.photographerservice.entity.Photographer;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,15 +18,20 @@ import java.util.Optional;
 @EnableJpaRepositories
 @Repository
 public interface PhotographerRepo extends JpaRepository<Photographer,Long> {
+    @Query("select p from Photographer p where p.isEnable = true")
+    List<Photographer> getPhotographersInLimite(Pageable pageable);
+
+    @Query("select p from Photographer p where p.isEnable = true")
+    List<Photographer> findPhotographerInLimit();
     @Transactional
     @Modifying
     @Query("""
-            update Photographer p set p.photographerMobileNo = ?1, p.studioName = ?2, p.studioEmail = ?3, p.description = ?4, p.profilePicLink = ?5, p.whatsAppNumber = ?6, p.contactEmail = ?7, p.faceBookProfile = ?8
-            where p.photographerId = ?9""")
+            update Photographer p set p.photographerMobileNo = ?1, p.studioName = ?2, p.studioEmail = ?3, p.description = ?4, p.profilePicLink = ?5, p.whatsAppNumber = ?6, p.contactEmail = ?7, p.faceBookProfile = ?8,
+            p.address = ?9 where p.photographerId = ?10""")
     int updatePhotographerByIdEquals(@NonNull String photographerMobileNo, @NonNull String studioName,
                                      @NonNull String studioEmail, @NonNull String description,
                                      @NonNull String profilePicLink, @NonNull String whatsAppNumber,
-                                     @NonNull String contactEmail, @NonNull String faceBookProfile,
+                                     @NonNull String contactEmail, @NonNull String faceBookProfile,@NonNull String address,
                                      @NonNull long photographerId);
     List<Photographer> findByIsEnableTrue();
     Optional<Photographer> findByPhotographerEmailEqualsIgnoreCase(@NonNull String photographerEmail);

@@ -35,6 +35,27 @@ public class PhotographerController {
 
     }
 
+    @GetMapping(path = "/" , params = "count")
+    public ResponseEntity<?> getPhotographerLimited(@RequestParam("count")int count) {
+        try {
+            return ResponseEntity.ok(photographerService.getPhotographerLimited(count));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+
+    }
+
+    @GetMapping(path = "/" , params = "pEmail")
+    public ResponseEntity<?> getPhotographerLimited(@RequestParam("pEmail")String photographerEmail) {
+        try {
+            return ResponseEntity.ok(photographerService.getPhotographerByEmail(photographerEmail));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+
+    }
+
+
     @GetMapping(path = "/")
     public ResponseEntity<?> getPhotographers() {
         try {

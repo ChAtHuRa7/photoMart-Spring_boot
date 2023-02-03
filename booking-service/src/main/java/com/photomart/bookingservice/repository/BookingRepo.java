@@ -10,10 +10,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @EnableJpaRepositories
 @Repository
 public interface BookingRepo extends JpaRepository<Booking,Long> {
+    @Query("select b from Booking b where b.calendarId = ?1")
+    Optional<Booking> findBookingByCalendarId(@NonNull long calendarId);
     @Query("""
             select b from Booking b
             where b.photographerId = ?1 and upper(b.paymentStatus) not like upper(?2) and upper(b.status) not like upper(?3)""")

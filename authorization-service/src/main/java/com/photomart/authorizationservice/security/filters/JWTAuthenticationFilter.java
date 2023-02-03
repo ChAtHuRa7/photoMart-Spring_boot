@@ -17,6 +17,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
@@ -72,7 +73,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .setExpiration(Date.from(LocalDateTime.now().plusMinutes(30).toInstant(ZoneOffset.UTC)))
                 .signWith(SignatureAlgorithm.HS256,SECRET_KEY)
                 .compact();
-        AuthenticationResponse authenticationResponse = new AuthenticationResponse(token);
+        AuthenticationResponse authenticationResponse = new AuthenticationResponse(token,authResult.getAuthorities()
+                .stream().map(GrantedAuthority::getAuthority).toList());
         response.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON);
         response.setStatus(HttpServletResponse.SC_ACCEPTED);
         response.getOutputStream().write(objectMapper.writeValueAsBytes(authenticationResponse));

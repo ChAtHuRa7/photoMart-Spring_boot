@@ -1,4 +1,4 @@
-package com.photomart.bookingservice.dto.requestDTO;
+package com.photomart.bookingservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

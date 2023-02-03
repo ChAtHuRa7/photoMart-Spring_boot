@@ -17,5 +17,5 @@ public class PortfolioResponseDto {
     private Long photographerId;
     private String location;
     private String albumName;
-    private List<SourceUrlResponseDto> sourceUrls;
+    private List<String> sourceUrls;
 }

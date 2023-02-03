@@ -63,7 +63,7 @@ public class BookingServicesImpl implements com.photomart.bookingservice.service
 
         Event event = new Event(
                 eventRequestDto.getLocating(),
-                eventRequestDto.getDate()
+                eventRequestDto.getTime()
         );
 
         PackageRequestDto packageRequestDto = bookingRequestDto.getPackageRequestDto();
@@ -165,7 +165,18 @@ public class BookingServicesImpl implements com.photomart.bookingservice.service
         }
     }
 
-    public Booking validateBooking(Booking booking){
+    @Override
+    public BookingResponseDto getBookingByCalendarId(long calendarId) {
+        Optional<Booking> booking = bookingRepo.findBookingByCalendarId(calendarId);
+        if (booking.isPresent()){
+            return  modelMapper.map(validateBooking(booking.get()), BookingResponseDto.class);
+        }
+        else {
+            throw new NotFoundException("Not found");
+        }
+    }
+
+    private Booking validateBooking(Booking booking){
         if(booking.getDate().before(Date.from(LocalDateTime.now().minusMinutes(30).toInstant(ZoneOffset.of("+05:30"))))
                 && booking.getPaymentStatus().equalsIgnoreCase("pending")){
             booking.setPaymentStatus("timeout");
@@ -176,8 +187,6 @@ public class BookingServicesImpl implements com.photomart.bookingservice.service
                     booking.getPhotographerId(),
                     "timeout"
             );
-
-
             try {
                 updateBookingStatusById(booking.getBookingId(),"timeout");
                 updatePaymentStatusById(booking.getBookingId(),new PaymentDetailsRequestDto(0,"timeout"));
@@ -194,7 +203,9 @@ public class BookingServicesImpl implements com.photomart.bookingservice.service
                         .subscribe();
 //                        .block();
             } catch (Exception e) {
-                throw new RuntimeException(e);
+//                throw new RuntimeException(e);
+                System.out.println(e);
+                System.out.println(e.getMessage());
             }
 
         }

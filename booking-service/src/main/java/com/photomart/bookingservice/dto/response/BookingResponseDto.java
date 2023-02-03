@@ -2,7 +2,7 @@ package com.photomart.bookingservice.dto.response;
 
 import com.photomart.bookingservice.dto.EventDto;
 import com.photomart.bookingservice.dto.PackageDto;
-import com.photomart.bookingservice.dto.requestDTO.CustomerDto;
+import com.photomart.bookingservice.dto.CustomerDto;
 import com.photomart.bookingservice.entity.Customer;
 import com.photomart.bookingservice.entity.Event;
 import com.photomart.bookingservice.entity.Package;

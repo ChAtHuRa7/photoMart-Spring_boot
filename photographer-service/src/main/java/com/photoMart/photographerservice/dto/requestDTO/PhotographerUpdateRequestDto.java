@@ -13,6 +13,7 @@ import javax.annotation.processing.Generated;
 @NoArgsConstructor
 public class PhotographerUpdateRequestDto {
     private String photographerMobileNo;
+    private String address;
     private String studioName;
     private String studioEmail;
     private String description;

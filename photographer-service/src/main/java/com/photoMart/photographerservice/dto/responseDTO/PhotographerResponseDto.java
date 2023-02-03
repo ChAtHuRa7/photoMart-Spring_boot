@@ -14,6 +14,7 @@ public class PhotographerResponseDto {
     private String photographerName;
     private String photographerEmail;
     private String photographerMobileNo;
+    private String address;
     private String studioName;
     private String studioEmail;
     private String description;

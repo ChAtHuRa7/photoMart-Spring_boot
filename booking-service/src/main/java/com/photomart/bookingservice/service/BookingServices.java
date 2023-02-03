@@ -18,4 +18,6 @@ public interface BookingServices {
     BookingResponseDto updatePaymentStatusById(long bookingId, PaymentDetailsRequestDto paymentDetailsRequestDto) throws Exception;
 
     BookingResponseDto updateBookingStatusById(long bookingId, String bookingStatus) throws Exception;
+
+    BookingResponseDto getBookingByCalendarId(long calendarId);
 }
