@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -21,9 +22,9 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long eId;
     private String locating;
-    private Time time;
+    private LocalTime time;
 
-    public Event(String locating, Time time) {
+    public Event(String locating, LocalTime time) {
         this.locating = locating;
         this.time = time;
     }

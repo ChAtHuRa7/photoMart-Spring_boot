@@ -57,7 +57,7 @@ public class JwtUtil {
                 claim("authorities",userDetails.getAuthorities())
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
-                .setExpiration(Date.from(LocalDateTime.now().plusMinutes(30).toInstant(ZoneOffset.UTC)))
+                .setExpiration(Date.from(LocalDateTime.now().plusMinutes(60).toInstant(ZoneOffset.of("+05:30"))))
                 .signWith(SignatureAlgorithm.HS256,SECRET_KEY)
                 .compact();
     }

@@ -13,6 +13,8 @@
     <file url="file://$PROJECT_DIR$/discovery-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/package-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/package-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/payment-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/payment-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/photographer-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/photographer-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/portfolio-service/src/main/java" charset="UTF-8" />

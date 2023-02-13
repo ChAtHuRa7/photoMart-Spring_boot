@@ -70,7 +70,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .setSubject(authResult.getName())
                 .claim("authorities",authResult.getAuthorities())
                 .setIssuedAt(new Date())
-                .setExpiration(Date.from(LocalDateTime.now().plusMinutes(30).toInstant(ZoneOffset.UTC)))
+                .setExpiration(Date.from(LocalDateTime.now().plusMinutes(60).toInstant(ZoneOffset.UTC)))
                 .signWith(SignatureAlgorithm.HS256,SECRET_KEY)
                 .compact();
         AuthenticationResponse authenticationResponse = new AuthenticationResponse(token,authResult.getAuthorities()

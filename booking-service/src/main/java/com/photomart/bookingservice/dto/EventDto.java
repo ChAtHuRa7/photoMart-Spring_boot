@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Data
@@ -13,6 +14,6 @@ import java.util.Date;
 public class EventDto {
     private long eId;
     private String locating;
-    private Date date;
+    private LocalTime time;
 
 }

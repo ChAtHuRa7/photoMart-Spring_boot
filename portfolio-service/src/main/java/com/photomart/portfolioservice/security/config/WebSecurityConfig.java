@@ -31,6 +31,7 @@ public class WebSecurityConfig {
 
         try {
             http
+                    .cors().and()
                     .csrf().disable()
                     .authorizeHttpRequests(authorize-> authorize
                             .requestMatchers(HttpMethod.POST,"/api/v1/portfolios/**").hasAuthority("PHOTOGRAPHER")

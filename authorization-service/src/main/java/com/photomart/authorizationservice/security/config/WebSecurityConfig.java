@@ -59,6 +59,7 @@ class WebSecurityConfig{
 
         try {
             http
+                    .cors().and()
                     .csrf().disable()
                     .authorizeHttpRequests(authorize-> authorize
                                     .requestMatchers("/login").permitAll()

@@ -38,7 +38,16 @@ public class UserController {
         String token = (String) httpServletRequest.getAttribute("jwt");
         List<GrantedAuthority> authorities = (List<GrantedAuthority>) httpServletRequest.getAttribute("authorities");
 
-       return ResponseEntity.ok(JwtValidationResponse.builder().userEmail(userName).jwt(token).authorities(authorities).build());
+        try{
+            System.out.println("@@ 1 @@");
+            return ResponseEntity.ok(JwtValidationResponse.builder().userEmail(userName).jwt(token).authorities(authorities).build());
+        } catch (Exception e) {
+            System.out.println("@@ 2 @@");
+            System.out.println("@@" + e.getMessage() + "@@");
+            System.out.println("@@" + e + "@@");
+            throw new RuntimeException(e);
+        }
+//        return ResponseEntity.ok(JwtValidationResponse.builder().userEmail(userName).jwt(token).authorities(authorities).build());
     }
 
     @PostMapping(path = "/users")

@@ -56,6 +56,7 @@ public class AuthenticationPreFilter extends AbstractGatewayFilterFactory<Authen
                         .header("Authorization" , bearerToken)
                         .retrieve().bodyToMono(JwtValidationResponse.class)
                         .map(response -> {
+                            System.out.println("### " + response.getJwt() + " ###");
                             exchange.getRequest().mutate().header("UserName",response.getUserName());
                             exchange.getRequest().mutate().header("JwtToken",response.getJwt());
                             exchange.getRequest().mutate().header("Authorities" , response.getAuthorities().stream()
@@ -65,6 +66,9 @@ public class AuthenticationPreFilter extends AbstractGatewayFilterFactory<Authen
                         }).flatMap(chain::filter).onErrorResume( error ->{
                             HttpStatus errorCode = null;
                             String errorMsg = "";
+
+                            System.out.println("### " + error + " ###");
+                            System.out.println("### " + error.getMessage() + " ###");
 
                             if(error instanceof WebClientResponseException){
                                 WebClientResponseException webClientResponseException = (WebClientResponseException) error;
@@ -101,7 +105,10 @@ public class AuthenticationPreFilter extends AbstractGatewayFilterFactory<Authen
         return response.setComplete();
     }
 
-    public Predicate<ServerHttpRequest> isSecured = request -> excludedUrls.stream().noneMatch(uri -> request.getURI().getPath().contains(uri));
+//    request.getURI().getPath().contains(uri)
+
+    public Predicate<ServerHttpRequest> isSecured = request -> excludedUrls.stream()
+            .noneMatch(uri -> request.getURI().getPath().contains(uri)) ;
 
     @NoArgsConstructor
     public static class Config{

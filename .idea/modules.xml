@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/cloud project.iml" filepath="$PROJECT_DIR$/.idea/cloud project.iml" />
       <module fileurl="file://$PROJECT_DIR$/discovery-server/discovery-server.iml" filepath="$PROJECT_DIR$/discovery-server/discovery-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/package-service/package-service.iml" filepath="$PROJECT_DIR$/package-service/package-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/payment-service/payment-service.iml" filepath="$PROJECT_DIR$/payment-service/payment-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/photographer-service/photographer-service.iml" filepath="$PROJECT_DIR$/photographer-service/photographer-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/portfolio-service/portfolio-service.iml" filepath="$PROJECT_DIR$/portfolio-service/portfolio-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/user-service/user-service.iml" filepath="$PROJECT_DIR$/user-service/user-service.iml" />

@@ -32,6 +32,7 @@ public class WebSecurityConfig {
 
         try {
             http
+                    .cors().and()
                     .csrf().disable()
                     .authorizeHttpRequests(authorize-> authorize
                             .requestMatchers(HttpMethod.GET ,"/api/v1/calendars/**").hasAnyAuthority("USER","PHOTOGRAPHER","SERVICE")

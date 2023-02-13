@@ -158,7 +158,33 @@ public class BookingServicesImpl implements com.photomart.bookingservice.service
     public BookingResponseDto updateBookingStatusById(long bookingId, String bookingStatus) throws Exception {
         int res = bookingRepo.updateStatusByBookingId(bookingStatus,bookingId);
         if (res == 1){
-            return getBookingById(bookingId);
+            BookingResponseDto booking = getBookingById(bookingId);
+
+            CalenderStatusUpdateRequestDTO calenderStatusUpdateRequestDTO = new CalenderStatusUpdateRequestDTO(
+                    booking.getBookingId(),
+                    booking.getPhotographerId(),
+                    booking.getStatus()
+            );
+
+            try {
+                webClientBuilder.build()
+                        .put()
+                        .uri("lb://calendar-service/api/v1/calendars/?id="+booking.getCalendarId())
+                        .header("Authorities",",SERVICE")
+                        .header("Authorization","token")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .body(Mono.just(calenderStatusUpdateRequestDTO), CalenderStatusUpdateRequestDTO.class)
+                        .retrieve()
+                        .bodyToMono(Objects.class)
+                        .subscribe(objects -> {});
+//                        .block();
+            } catch (Exception e) {
+//                throw new RuntimeException(e);
+//                System.out.println(e);
+                System.out.println(e.getMessage());
+            }
+
+            return booking;
         }
         else {
             throw new Exception("Not updated");
@@ -199,12 +225,12 @@ public class BookingServicesImpl implements com.photomart.bookingservice.service
                         .accept(MediaType.APPLICATION_JSON)
                         .body(Mono.just(calenderStatusUpdateRequestDTO), CalenderStatusUpdateRequestDTO.class)
                         .retrieve()
-                        .bodyToMono(Objects[].class)
-                        .subscribe();
+                        .bodyToMono(Objects.class)
+                        .subscribe(objects -> {});
 //                        .block();
             } catch (Exception e) {
 //                throw new RuntimeException(e);
-                System.out.println(e);
+//                System.out.println(e);
                 System.out.println(e.getMessage());
             }
 

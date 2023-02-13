@@ -51,9 +51,20 @@ public class UserServicesImpl implements UserServices {
     @Override
     @Transactional
     public UserDto getByUserName(String userEmail) throws UsernameNotFoundException{
+
+        System.out.println("### 1 ###");
+
         Users users = usersRepo.findByUserEmailIgnoreCase(userEmail);
 
-       if(users != null){
+        System.out.println("### 2 ###");
+
+        System.out.println(users.getUserEmail());
+        System.out.println(users);
+
+        System.out.println("### 3 ###");
+
+
+        if(users != null){
            UserDto userDto =  new UserDto(
                    users.getId(),
                    users.getUserEmail(),

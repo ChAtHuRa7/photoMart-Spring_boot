@@ -1,0 +1,12 @@
+com\photomart\apigateway\filters\AuthorizationFilter.class
+com\photomart\apigateway\ApiGatewayApplication.class
+com\photomart\apigateway\config\DefaultConfig.class
+com\photomart\apigateway\config\WebClientConfig.class
+com\photomart\apigateway\filters\AuthenticationPreFilter.class
+com\photomart\apigateway\filters\AuthenticationPreFilter$Config.class
+com\photomart\apigateway\Exceptions\ExceptionResponseModel.class
+com\photomart\apigateway\models\respons\JwtValidationResponse.class
+com\photomart\apigateway\config\EurekaConfig.class
+com\photomart\apigateway\models\respons\TokenValidationResponse.class
+com\photomart\apigateway\config\ObjectMapperConfig.class
+com\photomart\apigateway\models\Authority.class

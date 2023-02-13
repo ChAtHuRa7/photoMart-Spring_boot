@@ -35,7 +35,7 @@ public class PhotographerController {
 
     }
 
-    @GetMapping(path = "/" , params = "count")
+    @GetMapping(path = "/limit" , params = "count")
     public ResponseEntity<?> getPhotographerLimited(@RequestParam("count")int count) {
         try {
             return ResponseEntity.ok(photographerService.getPhotographerLimited(count));

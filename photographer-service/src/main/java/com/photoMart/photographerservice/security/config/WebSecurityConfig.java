@@ -33,11 +33,13 @@ public class WebSecurityConfig {
 
         try {
             http
+                    .cors().and()
                     .csrf().disable()
                     .authorizeHttpRequests(authorize-> authorize
-                            .requestMatchers(HttpMethod.GET ,"/api/v1/photographer/**").hasAnyAuthority("USER","PHOTOGRAPHER","SERVICE")
-                            .requestMatchers(HttpMethod.PUT,"/api/v1/photographer/**").hasAuthority("PHOTOGRAPHER")
-                            .requestMatchers(HttpMethod.POST,"/api/v1/photographer/**").hasAnyAuthority("SERVICE")
+                            .requestMatchers(HttpMethod.GET ,"/api/v1/photographers/limit**").permitAll()
+                            .requestMatchers(HttpMethod.GET ,"/api/v1/photographers/**").hasAnyAuthority("USER","PHOTOGRAPHER","SERVICE")
+                            .requestMatchers(HttpMethod.PUT,"/api/v1/photographers/**").hasAuthority("PHOTOGRAPHER")
+                            .requestMatchers(HttpMethod.POST,"/api/v1/photographers/**").hasAnyAuthority("SERVICE")
 //                            .requestMatchers(HttpMethod.DELETE ,"api/v1/calendars/**").hasAuthority("PHOTOGRAPHER")
                             .anyRequest().authenticated()
                     )
