@@ -203,7 +203,7 @@ public class BookingServicesImpl implements com.photomart.bookingservice.service
     }
 
     private Booking validateBooking(Booking booking){
-        if(booking.getDate().before(Date.from(LocalDateTime.now().minusMinutes(30).toInstant(ZoneOffset.of("+05:30"))))
+        if(booking.getDate().before(Date.from(LocalDateTime.now().minusMinutes(30).toInstant(ZoneOffset.UTC)))
                 && booking.getPaymentStatus().equalsIgnoreCase("pending")){
             booking.setPaymentStatus("timeout");
             booking.setStatus("timeout");

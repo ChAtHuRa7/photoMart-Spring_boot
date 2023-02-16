@@ -118,7 +118,7 @@ public class CalendarServiceImpl implements CalendarService {
 
 
     public Calendar validateCalendar(Calendar calendar){
-        if(calendar.getCreatedDateTime().before(Date.from(LocalDateTime.now().minusMinutes(30).toInstant(ZoneOffset.of("+05:30"))))
+        if(calendar.getCreatedDateTime().before(Date.from(LocalDateTime.now().minusMinutes(30).toInstant(ZoneOffset.UTC)))
                 && calendar.getStatus().equalsIgnoreCase("pending")){
             try {
 
